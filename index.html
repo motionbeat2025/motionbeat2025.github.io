@@ -201,6 +201,35 @@ Current music generators capture local textures but often fail to model long-ran
     </div> -->
     <!--/ Paper video. -->
 
+<div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+    <h2 class="title is-3" id="method">Method</h2>
+    <div class="column is-full-width">
+      <img src="static/images/model.png"
+     class="interpolation-image"
+     style="max-width: 900px; width: 100%; height: auto;"
+     alt="Interpolate start reference image.">
+    </div>
+  </div>
+</div>
+
+
+
+          <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+            <div class="content has-text-justified">
+            <p>
+             Architecture of MusicWeaver. In the structural planner, multimodal encoders (audio, text, video) produce embeddings fused by confidence-weighted attention. A Beat-Grid Generator establishes meter, bar count, and tempo, while a Transformer Decoder with prediction heads infers per-bar Section, Energy, Groove, and Harmony to form the structural plan. In the music renderer, a Control Encoder upsamples the plan into frame-aligned controls that condition a diffusion-based Music Renderer, which iteratively denoises to a mel spectrogram, followed by a vocoder that synthesizes the final waveform.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 <!--          <p>-->
@@ -230,12 +259,19 @@ Current music generators capture local textures but often fail to model long-ran
 <!--        <br/>-->
 <!--        &lt;!&ndash;/ Guided by image &ndash;&gt;-->
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Interpolation -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" id="dab">Generate and edit music</h2>
+
         <!-- Guided by text -->
 <h3 class="title is-5">
   Synthwave night drive that blooms into a brighter chorus (fix length and edit bars 5-8)
 </h3>
 
-<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0;">
+<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0 0 50px 0;">
   <li style="margin: 0 10px; text-align: center; width: 180px;">
     <figure style="margin: 0;">
       <audio controls style="width: 100%;">
@@ -286,7 +322,7 @@ Current music generators capture local textures but often fail to model long-ran
 
 <h3 class="title is-5">Bossa lounge with nylon-guitar lead (fix length)</h3>
 
-<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0;">
+<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0 0 50px 0;">
   <li style="margin: 0 10px; text-align: center; width: 180px;">
     <figure style="margin: 0;">
       <audio controls style="width: 100%;">
@@ -338,7 +374,7 @@ Current music generators capture local textures but often fail to model long-ran
 
 <h3 class="title is-5">Cinematic strings that break into drum-and-bass (change length)</h3>
 
-<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0;">
+<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0 0 50px 0;">
   <li style="margin: 0 10px; text-align: center; width: 180px;">
     <figure style="margin: 0;">
       <audio controls style="width: 100%;">
