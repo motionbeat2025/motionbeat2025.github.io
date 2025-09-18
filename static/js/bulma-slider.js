@@ -274,7 +274,7 @@ var bulmaSlider = function (_EventEmitter) {
 /* harmony default export */ __webpack_exports__["default"] = (bulmaSlider);
 
 /***/ }),
-/* 1 */
+/* pop */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -201,49 +201,7 @@ Current music generators capture local textures but often fail to model long-ran
     </div> -->
     <!--/ Paper video. -->
 
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3" id="method">Method</h2>
-        <div class="column is-full-width">
-          <img src="./static/images/stage1.png"
-                   class="interpolation-image"
-                   alt="Interpolate start reference image."/><br><br>
 
-          <img src="./static/images/stage2.png"
-                   class="interpolation-image"
-                   alt="Interpolate start reference image."/><br><br>
-
-          <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-            <div class="content has-text-justified">
-            <p>
-            The aim of our methodology is to generate latent optical flows guided by musical inputs.
-              Recent works in motion transfer have demonstrated the efficacy of employing latent optical flow for warping one image into another. Additionally, the generation process becomes more resource-efficient when operating in a low-dimensional latent flow space, which requires less computational power and time compared to working within high-dimensional pixel or latent feature spaces.
-              In selecting a model for generation, the exceptional quality and robust controllability afforded by diffusion models make them an ideal choice. The initial phase of our methodology involves training an auto-encoder to discern the optical flow between two frames within a video sequence. Subsequently, this trained auto-encoder aids in the training of the diffusion model, enabling the generation of latent flows.
-              Another fundamental aspect of our approach is the extraction of musical information. For our baseline model, we employ CLAP to encode the music, while our enhanced model additionally incorporates beat information for a better representation.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Interpolation -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3" id="dab">Music generation from text and edit with plan</h2>
-
-        <!-- Guided by image -->
-        <div class="content has-text-justified">
-          <p>DabFusion is capable of animating individuals in unseen scenarios. This process requires a series of preprocessing steps.
-            First, we employ YOLO <sup id="fnref:yolo" role="doc-noteref"><a href="#fn:yolo" class="footnote" rel="footnote">1</a></sup> as an object detector and Segment Anything Model<sup id="fnref:sam" role="doc-noteref"><a href="#fn:sam" class="footnote" rel="footnote">2</a></sup> as a segmentation model to identify and segment the person from unseen scenarios.
-            Subsequently, we substitute the individual in the image from the AIST++<sup id="fnref:aist" role="doc-noteref"><a href="#fn:aist" class="footnote" rel="footnote">3</a></sup> dataset with the newly segmented person, thus creating an image that combines the unfamiliar person with the background from the dataset.</p>
-        <h3 class="title is-4">Dance video generation with any person</h3>
 
 <!--          <p>-->
 <!--            We select five individuals from various settings, each adopting unique poses to generate dance videos from different musics. The resolution of generated videos is 128x128.-->
@@ -273,45 +231,213 @@ Current music generators capture local textures but often fail to model long-ran
 <!--        &lt;!&ndash;/ Guided by image &ndash;&gt;-->
 
         <!-- Guided by text -->
-<h3 class="title is-5">Electronic pop with four-on-the-floor chorus</h3>
-<ul style="display: flex; justify-content: space-around; align-items: center; list-style: none; padding: 0;">
-  <li style="margin: 0 10px; text-align: center;">
-    <figure>
-      <audio controls>
-        <source src="./static/editmusic/1/original.wav" type="audio/wav">
+<h3 class="title is-5">
+  Synthwave night drive that blooms into a brighter chorus (fix length and edit bars 5-8)
+</h3>
+
+<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0;">
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/synthwave/original.wav" type="audio/wav">
         Your browser does not support the audio element.
       </audio>
-      <figcaption>Original</figcaption>
+      <figcaption style="margin-top: 4px;">Original</figcaption>
     </figure>
   </li>
-  <li style="margin: 0 10px; text-align: center;">
-    <figure>
-      <audio controls>
-        <source src="./static/editmusic/1/energy.wav" type="audio/wav">
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/synthwave/edit1.wav" type="audio/wav">
         Your browser does not support the audio element.
       </audio>
-      <figcaption>Energy Edit</figcaption>
+      <figcaption style="margin-top: 4px;">
+        Switch to off-beat open hats and a brighter lead timbre
+      </figcaption>
     </figure>
   </li>
-  <li style="margin: 0 10px; text-align: center;">
-    <figure>
-      <audio controls>
-        <source src="./static/editmusic/1/keylift.wav" type="audio/wav">
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/synthwave/edit2.wav" type="audio/wav">
         Your browser does not support the audio element.
       </audio>
-      <figcaption>Key Lift</figcaption>
+      <figcaption style="margin-top: 4px;">
+        Swap chorus chords to a classic synthwave lift (F→G→A→F flavor) while keeping the groove
+      </figcaption>
     </figure>
   </li>
-  <li style="margin: 0 10px; text-align: center;">
-    <figure>
-      <audio controls>
-        <source src="./static/editmusic/1/swing.wav" type="audio/wav">
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/synthwave/edit3.wav" type="audio/wav">
         Your browser does not support the audio element.
       </audio>
-      <figcaption>Swing</figcaption>
+      <figcaption style="margin-top: 4px;">
+        Open the pad’s filter progressively across the chorus for a rising, brighter texture
+      </figcaption>
     </figure>
   </li>
 </ul>
+
+
+<h3 class="title is-5">Bossa lounge with nylon-guitar lead (fix length)</h3>
+
+<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0;">
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/bossa/original.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">Original</figcaption>
+    </figure>
+  </li>
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/bossa/edit1.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">
+        Delay the off-beats to introduce a gentle swing feel in the shaker while keeping the groove intact
+      </figcaption>
+    </figure>
+  </li>
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/bossa/edit2.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">
+        Emphasize a light 2–3 clave pattern in the cross-stick for a more idiomatic bossa pulse
+      </figcaption>
+    </figure>
+  </li>
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/bossa/edit3.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">
+        Drop kick and cross-stick in bar 4 for a one-bar breath
+      </figcaption>
+    </figure>
+  </li>
+</ul>
+
+
+
+<h3 class="title is-5">Cinematic strings that break into drum-and-bass (change length)</h3>
+
+<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0;">
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/cinematic/original.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">Original</figcaption>
+    </figure>
+  </li>
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/cinematic/edit1.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">
+        Add four bars of drum-free strings before the drop for a longer build
+      </figcaption>
+    </figure>
+  </li>
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/cinematic/edit2.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">
+        Accelerate across the string bars into the drop, tightening momentum without changing bar count
+      </figcaption>
+    </figure>
+  </li>
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/cinematic/edit3.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">
+        Transpose the final drop for a climactic lift
+      </figcaption>
+    </figure>
+  </li>
+</ul>
+
+
+
+<h3 class="title is-5">Electronic pop with four-on-the-floor chorus (change length)</h3>
+
+<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0;">
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/pop/original.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">Original</figcaption>
+    </figure>
+  </li>
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/pop/energy.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">
+        Raise chorus energy at bars 5–8, add a crash at bar 5, and densify hats
+      </figcaption>
+    </figure>
+  </li>
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/pop/keylift.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">
+        Chorus extended to bars 5–12 and a key lift in the last two bars
+      </figcaption>
+    </figure>
+  </li>
+
+  <li style="margin: 0 10px; text-align: center; width: 180px;">
+    <figure style="margin: 0;">
+      <audio controls style="width: 100%;">
+        <source src="static/editmusic/pop/swing.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption style="margin-top: 4px;">
+        Switch to halftime backbeat and swung hats for a laid-back feel at bars 9–12, keeping chorus intensity
+      </figcaption>
+    </figure>
+  </li>
+</ul>
+
 
 
 
@@ -356,112 +482,6 @@ Current music generators capture local textures but often fail to model long-ran
     </div>
 </section>
 
-<!-- <a href="https://pages.cs.huji.ac.il/adiyoss-lab/im2wav/"> </a>-->
-<!-- <a href="https://salu133445.github.io/clipsonic/"></a> -->
-<!-- <a href="https://text-to-audio.github.io/"> --></a>
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Image-to-Audio Generation -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3" id="gaist">Generate videos on AIST++ dataset</h2>
-
-        <div class="content has-text-justified">
-          <p>
-              DabFusion is trained on AIST++ training set, we generate videos in different scenarios on test set to show the versatility of DabFusion.
-          </p>
-        </div>
-        <!-- ImageHear -->
-        <div class="content has-text-justified">
-        <h3 class="title is-5">Same music, different angles, different poses.</h3>
-            <ul style="display: flex; justify-content: space-around; align-items: center;">
-             <li style="margin: 0; padding: 0;">
-               <video width="96" height="96" controls>
-              <source src="./static/aist++/same_music_different_angles/gBR_sBM_c01_d04_mBR0_ch03.mp4" type="video/mp4">
-              </video>
-             </li>
-             <li style="margin: 0; padding: 0;">
-               <video width="96" height="96" controls>
-              <source src="./static/aist++/same_music_different_angles/gBR_sBM_c02_d04_mBR0_ch03.mp4" type="video/mp4">
-               </video>
-             </li>
-             <li style="margin: 0; padding: 0;">
-              <video width="96" height="96" controls>
-              <source src="./static/aist++/same_music_different_angles/gBR_sBM_c03_d04_mBR0_ch03.mp4" type="video/mp4">
-              </video>
-            </li>
-            <li style="margin: 0; padding: 0;">
-             <video width="96" height="96" controls>
-                 <source src="./static/aist++/same_music_different_angles/gBR_sBM_c04_d04_mBR0_ch07.mp4" type="video/mp4">
-             </video>
-            </li>
-            <li style="margin: 0; padding: 0;">
-             <video width="96" height="96" controls>
-            <source src="./static/aist++/same_music_different_angles/gBR_sBM_c05_d04_mBR0_ch03.mp4" type="video/mp4">
-             </video>
-            </li>
-            </ul>
-
-
-        <h3 class="title is-5">Same starting frame, different musics</h3>
-            <ul style="display: flex; justify-content: space-around; align-items: center;">
-             <li style="margin: 0; padding: 0;">
-               <video width="96" height="96" controls>
-              <source src="./static/aist++/same_starting_frame_different_musics/mBR1.mp4" type="video/mp4">
-              </video>
-             </li>
-             <li style="margin: 0; padding: 0;">
-               <video width="96" height="96" controls>
-              <source src="./static/aist++/same_starting_frame_different_musics/mHO0.mp4" type="video/mp4">
-               </video>
-             </li>
-             <li style="margin: 0; padding: 0;">
-              <video width="96" height="96" controls>
-              <source src="./static/aist++/same_starting_frame_different_musics/mHO5.mp4" type="video/mp4">
-              </video>
-            </li>
-            <li style="margin: 0; padding: 0;">
-             <video width="96" height="96" controls>
-                 <source src="./static/aist++/same_starting_frame_different_musics/mJB3.mp4" type="video/mp4">
-             </video>
-            </li>
-            <li style="margin: 0; padding: 0;">
-             <video width="96" height="96" controls>
-            <source src="./static/aist++/same_starting_frame_different_musics/mJS2.mp4" type="video/mp4">
-             </video>
-            </li>
-            </ul>
-
-        </div>
-
-
-
-          </div>
-
-
-
-
-
-
-        <br/>
-
-</section>
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <div style="margin: 20px 0; padding: 20px; background-color: #f9f9f9; border-radius: 5px; border: 1px solid #ddd; max-width: 100%; width: 100%; box-sizing: border-box;">
-      <pre style="background-color: #f9f9f9; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.5; margin: 0; padding: 10px; border: none; white-space: pre-wrap;">
-@inproceedings{dabfusion,
-  title     = {Dance Any Beat: Blending Beats with Visuals in Dance Video Generation},
-  author    = {Wang, Xuanchen and Wang, Heng and Liu, Dongnan and Cai, Weidong},
-  booktitle = {IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
-  year      = {2025},
-}
-      </pre>
-    </div>
-  </div>
-</section>
 
 
 
@@ -469,25 +489,6 @@ Current music generators capture local textures but often fail to model long-ran
 
 
 
-
-
-
-
-
-<section class="section" id="References">
-  <div class="container is-max-desktop content">
-    <h2 class="title">References</h2>
-    <div class="ordlist">
-      <ol>
-        <li id="fn:yolo" role="doc-endnote"><p>Redmon, Joseph, et al. "You only look once: Unified, real-time object detection." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016. <a href="#fnref:yolo" class="reversefootnote" role="doc-backlink">&#8617;</a></p></li>
-        <li id="fn:sam" role="doc-endnote"><p>Kirillov, Alexander, et al. "Segment anything." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2023. <a href="#fnref:sam" class="reversefootnote" role="doc-backlink">&#8617;</a></p></li>
-        <li id="fn:aist" role="doc-endnote"><p>Li, Ruilong, et al. "Ai choreographer: Music conditioned 3d dance generation with aist++." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2021. <a href="#fnref:aist" class="reversefootnote" role="doc-backlink">&#8617;</a></p></li>
-      </ol>
-    </div>
-    
-    
-  </div>
-</section>
 
 
 <footer class="footer">
