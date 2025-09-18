@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="A simple yet effective V2A-Mapper for open-domain vision-to-audio generation.">
+  <meta name="keywords" content="V2A-Mapper, Cross-modal generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dance Any Beat: Blending Beats with Visuals in Dance Video Generation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/v2a.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MusicWeaver: Coherent Long-Range and Editable Music Generation from a Beat-Aligned Structural Plan</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=H356FF8AAAAJ&hl=en">Xuanchen Wang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com.au/citations?user=jPj4ViQAAAAJ&hl=en">Heng Wang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/tom-cai.html">Weidong Cai</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Sydney</span>
+          </div>
+
+<!--          <div class="column has-text-centered">-->
+<!--            <div class="publication-links">-->
+<!--              &lt;!&ndash; PDF Link. &ndash;&gt;-->
+<!--              <span class="link-block">-->
+<!--                <a href="./static/DabFusion.pdf"-->
+<!--                   class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="fas fa-file-pdf"></i>-->
+<!--                  </span>-->
+<!--                  <span>Paper</span>-->
+<!--                </a>-->
+<!--              </span>-->
+<!--              <span class="link-block">-->
+<!--                <a href="https://arxiv.org/abs/2405.09266"-->
+<!--                   class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="ai ai-arxiv"></i>-->
+<!--                  </span>-->
+<!--                  <span>arXiv</span>-->
+<!--                </a>-->
+<!--              </span>-->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="todo"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (coming soon)</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <!-- Huggingface Link. -->
+              <!-- <span class="link-block">
+                <a href="todo"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span>Hugging Face Space (coming soon)</span>
+                  </a>
+              </span> -->
+              <!-- Dataset Link.
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- teaser image -->
+<!--<section class="hero teaser">-->
+<!--  <div class="container is-max-desktop">-->
+<!--    <div class="hero-body">-->
+<!--      <img src="./static/images/teaser.png" width="719" height="245"-->
+<!--                 class="interpolation-image"-->
+<!--                 alt="A lightweight solution to utilize foundation models in vision-to-audio generation."/>-->
+<!--      <h2 class="subtitle has-text-centered">-->
+<!--        <b>DabFusion</b> Dance any beat with any person.-->
+<!--      </h2>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<!--/ teaser image -->
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Content. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Content</h2>
+        <div class="content has-text-justified">
+          <div class="toc" >
+          <ul>
+            <li>
+              <a href="#abstract">Abstract</a>
+            </li>
+            <li>
+              <a href="#method">Method</a>
+            </li>
+            <li>
+              <a href="#dab">Dance any beats with any person</a>
+            </li>
+            <li>
+              <a href="#gaist">Generate videos on AIST++ dataset</a>
+            </li>
+            
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Content. -->
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" id="abstract">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+Current music generators capture local textures but often fail to model long-range structure, leading to off-beat outputs, weak section transitions, and limited editing capability. We present MusicWeaver, a music generation model conditioned on a beat-aligned structural plan. This plan serves as an editable intermediate between the input prompt and the generated music, preserving global form and enabling professional, localized edits. MusicWeaver consists of a planner, which translates prompts into a structural plan encoding musical form and compositional cues, and a diffusion-based generator, which synthesizes music under the plan’s guidance. To assess generation and editing quality, we introduce two metrics: the Structure Coherence Score (SCS) for evaluating long-range form and timing, and the Edit Fidelity Score (EFS) for measuring the accuracy of realizing plan edits. Experiments demonstrate that MusicWeaver achieves state-of-the-art fidelity and controllability, producing music closer to human-composed works.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" id="method">Method</h2>
+        <div class="column is-full-width">
+          <img src="./static/images/stage1.png"
+                   class="interpolation-image"
+                   alt="Interpolate start reference image."/><br><br>
+
+          <img src="./static/images/stage2.png"
+                   class="interpolation-image"
+                   alt="Interpolate start reference image."/><br><br>
+
+          <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+            <div class="content has-text-justified">
+            <p>
+            The aim of our methodology is to generate latent optical flows guided by musical inputs.
+              Recent works in motion transfer have demonstrated the efficacy of employing latent optical flow for warping one image into another. Additionally, the generation process becomes more resource-efficient when operating in a low-dimensional latent flow space, which requires less computational power and time compared to working within high-dimensional pixel or latent feature spaces.
+              In selecting a model for generation, the exceptional quality and robust controllability afforded by diffusion models make them an ideal choice. The initial phase of our methodology involves training an auto-encoder to discern the optical flow between two frames within a video sequence. Subsequently, this trained auto-encoder aids in the training of the diffusion model, enabling the generation of latent flows.
+              Another fundamental aspect of our approach is the extraction of musical information. For our baseline model, we employ CLAP to encode the music, while our enhanced model additionally incorporates beat information for a better representation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Interpolation -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" id="dab">Music generation from text and edit with plan</h2>
+
+        <!-- Guided by image -->
+        <div class="content has-text-justified">
+          <p>DabFusion is capable of animating individuals in unseen scenarios. This process requires a series of preprocessing steps.
+            First, we employ YOLO <sup id="fnref:yolo" role="doc-noteref"><a href="#fn:yolo" class="footnote" rel="footnote">1</a></sup> as an object detector and Segment Anything Model<sup id="fnref:sam" role="doc-noteref"><a href="#fn:sam" class="footnote" rel="footnote">2</a></sup> as a segmentation model to identify and segment the person from unseen scenarios.
+            Subsequently, we substitute the individual in the image from the AIST++<sup id="fnref:aist" role="doc-noteref"><a href="#fn:aist" class="footnote" rel="footnote">3</a></sup> dataset with the newly segmented person, thus creating an image that combines the unfamiliar person with the background from the dataset.</p>
+        <h3 class="title is-4">Dance video generation with any person</h3>
+
+<!--          <p>-->
+<!--            We select five individuals from various settings, each adopting unique poses to generate dance videos from different musics. The resolution of generated videos is 128x128.-->
+<!--          </p>-->
+<!--          <div class="t" >-->
+<!--            <ul>-->
+<!--              <li>-->
+<!--                <img src="./static/unseen/images/spiderman_im.jpg" style="max-width: 150px; max-height: 150px; object-fit: contain;" />-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <img src="./static/unseen/images/iron_crouch_im.jpg" style="max-width: 150px; max-height: 150px; object-fit: contain;" />-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <img src="./static/unseen/images/cr7_im.jpg" style="max-width: 150px; max-height: 150px; object-fit: contain;" />-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <img src="./static/unseen/images/iron_im.jpeg" style="max-width: 150px; max-height: 150px; object-fit: contain;" />-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <img src="./static/unseen/images/comic_im.jpg" style="max-width: 150px; max-height: 150px; object-fit: contain;" />-->
+<!--              </li>-->
+<!--              -->
+<!--            </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <br/>-->
+<!--        &lt;!&ndash;/ Guided by image &ndash;&gt;-->
+
+        <!-- Guided by text -->
+<h3 class="title is-5">Electronic pop with four-on-the-floor chorus</h3>
+<ul style="display: flex; justify-content: space-around; align-items: center; list-style: none; padding: 0;">
+  <li style="margin: 0 10px; text-align: center;">
+    <figure>
+      <audio controls>
+        <source src="./static/editmusic/1/original.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption>Original</figcaption>
+    </figure>
+  </li>
+  <li style="margin: 0 10px; text-align: center;">
+    <figure>
+      <audio controls>
+        <source src="./static/editmusic/1/energy.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption>Energy Edit</figcaption>
+    </figure>
+  </li>
+  <li style="margin: 0 10px; text-align: center;">
+    <figure>
+      <audio controls>
+        <source src="./static/editmusic/1/keylift.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption>Key Lift</figcaption>
+    </figure>
+  </li>
+  <li style="margin: 0 10px; text-align: center;">
+    <figure>
+      <audio controls>
+        <source src="./static/editmusic/1/swing.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption>Swing</figcaption>
+    </figure>
+  </li>
+</ul>
+
+
+
+<!--          <ul style="display: flex; justify-content: space-around; align-items: center;">-->
+<!--            <li style="margin: 0; padding: 0;">-->
+<!--             <iframe src="./static/unseen/spiderman/mBR0.mp4" frameborder="0" allowfullscreen width="128" height="96"></iframe>-->
+<!--            </li>-->
+<!--            <li style="margin: 0; padding: 0;">-->
+<!--             <iframe src="./static/unseen/iron_crouch_video/mBR0.mp4" frameborder="0" allowfullscreen width="128" height="96"></iframe>-->
+<!--            </li >-->
+<!--            <li style="margin: 0; padding: 0;">-->
+<!--             <iframe src="./static/unseen/cr7/mBR0.mp4" frameborder="0" allowfullscreen width="128" height="96"></iframe>-->
+<!--            </li>-->
+<!--            <li style="margin: 0; padding: 0;">-->
+<!--             <iframe src="./static/unseen/iron/mBR0.mp4" frameborder="0" allowfullscreen width="128" height="96"></iframe>-->
+<!--            </li >-->
+<!--            <li style="margin: 0; padding: 0;">-->
+<!--             <iframe src="./static/unseen/comic/mBR0.mp4" frameborder="0" allowfullscreen width="128" height="96"></iframe>-->
+<!--            </li>-->
+
+<!--          </ul>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</section>
+
+<!-- <a href="https://pages.cs.huji.ac.il/adiyoss-lab/im2wav/"> </a>-->
+<!-- <a href="https://salu133445.github.io/clipsonic/"></a> -->
+<!-- <a href="https://text-to-audio.github.io/"> --></a>
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Image-to-Audio Generation -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" id="gaist">Generate videos on AIST++ dataset</h2>
+
+        <div class="content has-text-justified">
+          <p>
+              DabFusion is trained on AIST++ training set, we generate videos in different scenarios on test set to show the versatility of DabFusion.
+          </p>
+        </div>
+        <!-- ImageHear -->
+        <div class="content has-text-justified">
+        <h3 class="title is-5">Same music, different angles, different poses.</h3>
+            <ul style="display: flex; justify-content: space-around; align-items: center;">
+             <li style="margin: 0; padding: 0;">
+               <video width="96" height="96" controls>
+              <source src="./static/aist++/same_music_different_angles/gBR_sBM_c01_d04_mBR0_ch03.mp4" type="video/mp4">
+              </video>
+             </li>
+             <li style="margin: 0; padding: 0;">
+               <video width="96" height="96" controls>
+              <source src="./static/aist++/same_music_different_angles/gBR_sBM_c02_d04_mBR0_ch03.mp4" type="video/mp4">
+               </video>
+             </li>
+             <li style="margin: 0; padding: 0;">
+              <video width="96" height="96" controls>
+              <source src="./static/aist++/same_music_different_angles/gBR_sBM_c03_d04_mBR0_ch03.mp4" type="video/mp4">
+              </video>
+            </li>
+            <li style="margin: 0; padding: 0;">
+             <video width="96" height="96" controls>
+                 <source src="./static/aist++/same_music_different_angles/gBR_sBM_c04_d04_mBR0_ch07.mp4" type="video/mp4">
+             </video>
+            </li>
+            <li style="margin: 0; padding: 0;">
+             <video width="96" height="96" controls>
+            <source src="./static/aist++/same_music_different_angles/gBR_sBM_c05_d04_mBR0_ch03.mp4" type="video/mp4">
+             </video>
+            </li>
+            </ul>
+
+
+        <h3 class="title is-5">Same starting frame, different musics</h3>
+            <ul style="display: flex; justify-content: space-around; align-items: center;">
+             <li style="margin: 0; padding: 0;">
+               <video width="96" height="96" controls>
+              <source src="./static/aist++/same_starting_frame_different_musics/mBR1.mp4" type="video/mp4">
+              </video>
+             </li>
+             <li style="margin: 0; padding: 0;">
+               <video width="96" height="96" controls>
+              <source src="./static/aist++/same_starting_frame_different_musics/mHO0.mp4" type="video/mp4">
+               </video>
+             </li>
+             <li style="margin: 0; padding: 0;">
+              <video width="96" height="96" controls>
+              <source src="./static/aist++/same_starting_frame_different_musics/mHO5.mp4" type="video/mp4">
+              </video>
+            </li>
+            <li style="margin: 0; padding: 0;">
+             <video width="96" height="96" controls>
+                 <source src="./static/aist++/same_starting_frame_different_musics/mJB3.mp4" type="video/mp4">
+             </video>
+            </li>
+            <li style="margin: 0; padding: 0;">
+             <video width="96" height="96" controls>
+            <source src="./static/aist++/same_starting_frame_different_musics/mJS2.mp4" type="video/mp4">
+             </video>
+            </li>
+            </ul>
+
+        </div>
+
+
+
+          </div>
+
+
+
+
+
+
+        <br/>
+
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <div style="margin: 20px 0; padding: 20px; background-color: #f9f9f9; border-radius: 5px; border: 1px solid #ddd; max-width: 100%; width: 100%; box-sizing: border-box;">
+      <pre style="background-color: #f9f9f9; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.5; margin: 0; padding: 10px; border: none; white-space: pre-wrap;">
+@inproceedings{dabfusion,
+  title     = {Dance Any Beat: Blending Beats with Visuals in Dance Video Generation},
+  author    = {Wang, Xuanchen and Wang, Heng and Liu, Dongnan and Cai, Weidong},
+  booktitle = {IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  year      = {2025},
+}
+      </pre>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="section" id="References">
+  <div class="container is-max-desktop content">
+    <h2 class="title">References</h2>
+    <div class="ordlist">
+      <ol>
+        <li id="fn:yolo" role="doc-endnote"><p>Redmon, Joseph, et al. "You only look once: Unified, real-time object detection." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016. <a href="#fnref:yolo" class="reversefootnote" role="doc-backlink">&#8617;</a></p></li>
+        <li id="fn:sam" role="doc-endnote"><p>Kirillov, Alexander, et al. "Segment anything." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2023. <a href="#fnref:sam" class="reversefootnote" role="doc-backlink">&#8617;</a></p></li>
+        <li id="fn:aist" role="doc-endnote"><p>Li, Ruilong, et al. "Ai choreographer: Music conditioned 3d dance generation with aist++." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2021. <a href="#fnref:aist" class="reversefootnote" role="doc-backlink">&#8617;</a></p></li>
+      </ol>
+    </div>
+    
+    
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/DabFusion.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            <br>
+            Source code is mainly borrowed from <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> website.
+            
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
