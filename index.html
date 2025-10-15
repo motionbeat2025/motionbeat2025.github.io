@@ -6,7 +6,7 @@
         content="A simple yet effective V2A-Mapper for open-domain vision-to-audio generation.">
   <meta name="keywords" content="V2A-Mapper, Cross-modal generation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MusicWeaver: Coherent Long-Range and Editable Music Generation from a Beat-Aligned Structural Plan</title>
+  <title>MotionBeat: Motion-Aligned Music Representation via Embodied Contrastive Learning and Bar-Equivariant Contact-Aware Encoding</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -59,7 +59,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">MusicWeaver: Coherent Long-Range and Editable Music Generation from a Beat-Aligned Structural Plan</h1>
+          <h1 class="title is-1 publication-title">MotionBeat: Motion-Aligned Music Representation via Embodied Contrastive Learning and Bar-Equivariant Contact-Aware Encoding</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://scholar.google.com/citations?user=H356FF8AAAAJ&hl=en">Xuanchen Wang</a>,</span>
@@ -85,7 +85,7 @@
               </span>
 
                 <span class="link-block">
-                <a href="https://github.com/wangxuanchen88/MusicWeaver"
+                <a href="https://github.com/wangxuanchen88/MotionBeat"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -183,9 +183,6 @@
             <li>
               <a href="#method">Method</a>
             </li>
-            <li>
-              <a href="#dab">Generate and edit music</a>
-            </li>
 
             
           </ul>
@@ -200,7 +197,7 @@
         <h2 class="title is-3" id="abstract">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-Current music generators capture local textures but often fail to model long-range structure, leading to off-beat outputs, weak section transitions, and limited editing capability. We present MusicWeaver, a music generation model conditioned on a beat-aligned structural plan. This plan serves as an editable intermediate between the input prompt and the generated music, preserving global form and enabling professional, localized edits. MusicWeaver consists of a planner, which translates prompts into a structural plan encoding musical form and compositional cues, and a diffusion-based generator, which synthesizes music under the plan’s guidance. To assess generation and editing quality, we introduce two metrics: the Structure Coherence Score (SCS) for evaluating long-range form and timing, and the Edit Fidelity Score (EFS) for measuring the accuracy of realizing plan edits. Experiments demonstrate that MusicWeaver achieves state-of-the-art fidelity and controllability, producing music closer to human-composed works.
+Music is both an auditory and an embodied phenomenon, closely linked to human motion and naturally expressed through dance. However, most existing audio representations neglect this embodied dimension, limiting their ability to capture rhythmic and structural cues that drive movement. We propose MotionBeat, a framework for motion-aligned music representation learning. MotionBeat is trained with two newly proposed objectives: the Embodied Contrastive Loss (ECL), an enhanced InfoNCE formulation with tempo-aware and beat-jitter negatives to achieve fine-grained rhythmic discrimination, and the Structural Rhythm Alignment Loss (SRAL), which ensures rhythm consistency by aligning music accents with corresponding motion events. Architecturally, MotionBeat introduces bar-equivariant phase rotations to capture cyclic rhythmic patterns and contact-guided attention to emphasize motion events synchronized with musical accents. Experiments show that MotionBeat outperforms state-of-the-art audio encoders in music-to-dance generation and transfers effectively to beat tracking, music tagging, genre and instrument classification, emotion recognition, and audio–visual retrieval.
           </p>
         </div>
       </div>
@@ -237,7 +234,7 @@ Current music generators capture local textures but often fail to model long-ran
         <div class="column is-four-fifths">
             <div class="content has-text-justified">
             <p>
-             Architecture of MusicWeaver. In the structural planner, multimodal encoders (audio, text, video) produce embeddings fused by confidence-weighted attention. A Beat-Grid Generator establishes meter, bar count, and tempo, while a Transformer Decoder with prediction heads infers per-bar Section, Energy, Groove, and Harmony to form the structural plan. In the music renderer, a Control Encoder upsamples the plan into frame-aligned controls that condition a diffusion-based Music Renderer, which iteratively denoises to a mel spectrogram, followed by a vocoder that synthesizes the final waveform.
+             Architecture of MotionBeat. Audio and motion inputs are converted into beat-synchronous tokens and passed through encoders with bar-equivariant phase rotations and contact-guided attention. Embeddings are trained with the Embodied Contrastive Loss (ECL), while auxiliary rhythm heads provide onset envelopes and contact pulses for the Structural Rhythm Alignment Loss (SRAL). The total loss integrates both objectives to learn motion-aligned music representations.
             </p>
           </div>
         </div>
@@ -250,247 +247,6 @@ Current music generators capture local textures but often fail to model long-ran
 
 
 
-<!--          <p>-->
-<!--            We select five individuals from various settings, each adopting unique poses to generate dance videos from different musics. The resolution of generated videos is 128x128.-->
-<!--          </p>-->
-<!--          <div class="t" >-->
-<!--            <ul>-->
-<!--              <li>-->
-<!--                <img src="./static/unseen/images/spiderman_im.jpg" style="max-width: 150px; max-height: 150px; object-fit: contain;" />-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <img src="./static/unseen/images/iron_crouch_im.jpg" style="max-width: 150px; max-height: 150px; object-fit: contain;" />-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <img src="./static/unseen/images/cr7_im.jpg" style="max-width: 150px; max-height: 150px; object-fit: contain;" />-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <img src="./static/unseen/images/iron_im.jpeg" style="max-width: 150px; max-height: 150px; object-fit: contain;" />-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <img src="./static/unseen/images/comic_im.jpg" style="max-width: 150px; max-height: 150px; object-fit: contain;" />-->
-<!--              </li>-->
-<!--              -->
-<!--            </ul>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <br/>-->
-<!--        &lt;!&ndash;/ Guided by image &ndash;&gt;-->
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Interpolation -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3" id="dab">Generate and edit music</h2>
-
-        <!-- Guided by text -->
-<h3 class="title is-5">
-  Synthwave night drive that blooms into a brighter chorus (fix length and edit bars 5-8)
-</h3>
-
-<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0 0 50px 0;">
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/synthwave/original.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">Original</figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/synthwave/edit1.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Switch to off-beat open hats and a brighter lead timbre
-      </figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/synthwave/edit2.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Swap chorus chords to a classic synthwave lift (F→G→A→F flavor) while keeping the groove
-      </figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/synthwave/edit3.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Open the pad’s filter progressively across the chorus for a rising, brighter texture
-      </figcaption>
-    </figure>
-  </li>
-</ul>
-
-
-<h3 class="title is-5">Bossa lounge with nylon-guitar lead (fix length)</h3>
-
-<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0 0 50px 0;">
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/bossa/original.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">Original</figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/bossa/edit1.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Delay the off-beats to introduce a gentle swing feel in the shaker while keeping the groove intact
-      </figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/bossa/edit2.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Emphasize a light 2–3 clave pattern in the cross-stick for a more idiomatic bossa pulse
-      </figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/bossa/edit3.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Drop kick and cross-stick in bar 4 for a one-bar breath
-      </figcaption>
-    </figure>
-  </li>
-</ul>
-
-
-
-<h3 class="title is-5">Cinematic strings that break into drum-and-bass (change length)</h3>
-
-<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0 0 50px 0;">
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/cinematic/original.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">Original</figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/cinematic/edit1.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Add four bars of drum-free strings before the drop for a longer build
-      </figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/cinematic/edit2.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Accelerate across the string bars into the drop, tightening momentum without changing bar count
-      </figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/cinematic/edit3.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Transpose the final drop for a climactic lift
-      </figcaption>
-    </figure>
-  </li>
-</ul>
-
-
-
-<h3 class="title is-5">Electronic pop with four-on-the-floor chorus (change length)</h3>
-
-<ul style="display: flex; justify-content: space-around; align-items: flex-start; list-style: none; padding: 0; margin: 0;">
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/pop/original.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">Original</figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/pop/energy.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Raise chorus energy at bars 5–8, add a crash at bar 5, and densify hats
-      </figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/pop/keylift.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Chorus extended to bars 5–12 and a key lift in the last two bars
-      </figcaption>
-    </figure>
-  </li>
-
-  <li style="margin: 0 10px; text-align: center; width: 180px;">
-    <figure style="margin: 0;">
-      <audio controls style="width: 100%;">
-        <source src="static/editmusic/pop/swing.wav" type="audio/wav">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption style="margin-top: 4px;">
-        Switch to halftime backbeat and swung hats for a laid-back feel at bars 9–12, keeping chorus intensity
-      </figcaption>
-    </figure>
-  </li>
-</ul>
 
 
 
